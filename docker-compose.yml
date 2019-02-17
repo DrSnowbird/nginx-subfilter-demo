@@ -2,10 +2,13 @@ nginx-subfilter-demo:
   image: nginx:latest
   volumes:
     - ./nginx.conf:/etc/nginx/nginx.conf:ro
+#    - ./etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+#    - ./etc/nginx/customized/sub_filter_customized.conf:/etc/nginx/conf.d/sub_filter_customized.conf:ro
+#    - ./etc/nginx/certificates:/etc/nginx/certificates:ro
   ports:
-    - "8880:80"
-#  environment:
-#    - NGINX_PORT=80
+    - "38880:80"
+#    - "38843:443"
+    - "18080:8080"
   links:
     - app
   command: [nginx-debug, '-g', 'daemon off;']
@@ -16,4 +19,4 @@ app:
     - .:/usr/src/app
   command: node /usr/src/app/server.js
   ports:
-    - "5000:5000"
+    - "15000:5000"
